@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zipkart - Sign In / Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 360px;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #7f3fbf;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .tab button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #e0cffe;
+      color: #7f3fbf;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab button.active {
+      background-color: #7f3fbf;
+      color: white;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: 500;
+      color: #5a2d82;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+      background-color: #faf6ff;
+    }
+
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #7f3fbf;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #692fad;
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">ZipKart</div>
+    <div class="tab">
+      <button class="tablink active" onclick="switchForm('signin')">Sign In</button>
+      <button class="tablink" onclick="switchForm('signup')">Sign Up</button>
+    </div>
+
+    <!-- Sign In Form -->
+    <form id="signin" class="active" action="/login" method="POST">
+      <label for="signin-username">Username</label>
+      <input type="text" id="signin-username" name="username" required>
+
+      <label for="signin-password">Password</label>
+      <input type="password" id="signin-password" name="password" required>
+
+      <input type="submit" value="Sign In">
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signup" action="/register" method="POST">
+      <label for="signup-username">Username</label>
+      <input type="text" id="signup-username" name="username" required>
+
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" name="email" required>
+
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" name="password" required>
+
+      <input type="submit" value="Sign Up">
+    </form>
+
+    <div class="note">© 2025 Zipkart. All rights reserved.</div>
+  </div>
+
+  <script>
+    function switchForm(formId) {
+      const signInForm = document.getElementById('signin');
+      const signUpForm = document.getElementById('signup');
+      const buttons = document.querySelectorAll('.tab button');
+
+      // Hide all forms
+      signInForm.classList.remove('active');
+      signUpForm.classList.remove('active');
+
+      // Show selected form
+      document.getElementById(formId).classList.add('active');
+
+      // Toggle active tab button
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if (formId === 'signin') {
+        buttons[0].classList.add('active');
+      } else {
+        buttons[1].classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
